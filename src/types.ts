@@ -34,7 +34,7 @@ export type WordParam = {
 export type MessageParams = {
   roomName: string;
   from: string;
-  to: string;
+  to: string[];
   message: string;
 };
 

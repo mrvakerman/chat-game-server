@@ -235,13 +235,16 @@ io.sockets.on("connection", (socket: SocketIO.Socket) => {
     }
 
     if (params.to) {
-      let toUser = room.users.find(user => user.name === params.to);
-      if (!toUser) {
-        sendError(socket, `Пользователь с ником ${params.to} отсутствует`);
-        return;
-      }
+      let toUsers = room.users.map(user =>
+        params.to.some(toUser => toUser === user.name) ? user : undefined
+      );
       send(socket, "send-message", mapPrivateMessage(params));
-      send(toUser.socket, "send-message", mapPrivateMessage(params));
+      toUsers.forEach(
+        toUser =>
+          toUser &&
+          toUser.socket.id !== socket.id &&
+          send(toUser.socket, "send-message", mapPrivateMessage(params))
+      );
     } else {
       sendToMembersOfRoom(room, "send-message", mapMessage(params));
     }
