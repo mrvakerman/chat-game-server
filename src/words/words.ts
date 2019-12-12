@@ -1,3 +1,4 @@
 export function getWords(): string[] {
-  return require("fs").readFileSync("./src/words/rus.txt", "utf8");
+  const result = require("fs").readFileSync("./src/words/rus.txt", "utf8");
+  return (result as string).split("\r\n");
 }
