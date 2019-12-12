@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon index.ts\" \"npm start --prefix client\"",
     "start": "node build/index.js",
-    "build": "tsc -p . && npm run build --prefix client",
+    "build": "tsc -p . && npm install --prefix client && npm run build --prefix client",
     "build-server": "tsc -p ."
   },
   "dependencies": {
