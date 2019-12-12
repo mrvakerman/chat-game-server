@@ -11,5 +11,5 @@
     "jsx": "react"
   },
   "include": ["index.ts", "src/*"],
-  "exclude": ["client", "node_modules"]
+  "exclude": ["client", "public", "node_modules"]
 }

@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "concurrently \"nodemon index.ts\" \"npm start --prefix client\"",
     "start": "node build/index.js",
-    "build": "tsc -p . && npm install --prefix client && npm run build --prefix client",
-    "build-server": "tsc -p ."
+    "build-full": "tsc -p . && npm install --prefix client && npm run build --prefix client",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "@types/express": "^4.17.2",
