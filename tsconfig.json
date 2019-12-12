@@ -5,7 +5,11 @@
     "allowJs": true,
     "strict": true,
     "moduleResolution": "node",
-    "outDir": "./dist",
-    "rootDir": "./src"
-  }
+    "esModuleInterop": true,
+    "outDir": "./",
+    "rootDir": "./",
+    "jsx": "react"
+  },
+  "include": ["index.ts", "src/*"],
+  "exclude": ["client", "node_modules"]
 }

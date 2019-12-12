@@ -1,4 +1,4 @@
-import { Room, RoomParam, User, WordParam, MessageParams } from "./types";
+import { Room, RoomParam, User, WordParam, MessageParams } from "./src/types";
 import {
   mapRooms,
   mapRoom,
@@ -6,18 +6,19 @@ import {
   mapUsers,
   mapPrivateMessage,
   mapMessage
-} from "./mappers";
-import { getWords } from "./words/words";
+} from "./src/mappers";
+import { getWords } from "./src/words/words";
 import {
   send,
   sendToAll,
   sendToMembersOfRoom,
   sendError,
   sendWordError
-} from "./io-events";
-import { colors } from "./colors";
+} from "./src/io-events";
+import { colors } from "./src/colors";
 
-let app = require("express")();
+let express = require("express");
+let app = express();
 let server = require("http").createServer(app);
 let io = require("socket.io")(server);
 
@@ -51,6 +52,13 @@ function checkLastSymbol(prevWord: string, newWord: string): boolean {
     lastSymbol = prevWord[prevWord.length - 2];
   }
   return lastSymbol !== firstSymbol;
+}
+
+if (process.env.NODE_END === "production") {
+  app.use(express.static("client/build"));
+  app.get("/*", (req: any, res: any) => {
+    res.sendFile(`${__dirname}/client/build/index.html`);
+  });
 }
 
 server.listen(8080, () => console.log("Server started on *:8080"));
