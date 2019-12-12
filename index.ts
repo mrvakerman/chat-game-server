@@ -60,7 +60,7 @@ app.get("/", (req: any, res: any) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
 
-server.listen(80, () => console.log("Server started on *:80"));
+server.listen(process.env.PORT || 3000, () => console.log("Server started"));
 
 io.sockets.on("connection", (socket: SocketIO.Socket) => {
   send(socket, "connected");
