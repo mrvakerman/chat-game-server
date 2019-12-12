@@ -8,11 +8,10 @@ import Chat from "./Chat";
 import { Help } from "@material-ui/icons";
 import HelpDlg from "./dialogs/Help";
 
-const socket = socketIOClient(
+const socket =
   process.env.NODE_ENV === "production"
-    ? "https://chat-words-server.now.sh/"
-    : "localhost:8080"
-);
+    ? socketIOClient()
+    : socketIOClient("localhost:8080");
 
 export default function App() {
   const [room, setRoom] = useState<Room>();
