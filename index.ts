@@ -54,12 +54,11 @@ function checkLastSymbol(prevWord: string, newWord: string): boolean {
   return lastSymbol !== firstSymbol;
 }
 
-if (process.env.NODE_END === "production") {
-  app.use(express.static("client/build"));
-  app.get("/*", (req: any, res: any) => {
-    res.sendFile(`${__dirname}/client/build/index.html`);
-  });
-}
+// TODO fix this code
+app.use(express.static("client/build"));
+app.get("/", (req: any, res: any) => {
+  res.sendFile(`${__dirname}/client/build/index.html`);
+});
 
 server.listen(8080, () => console.log("Server started on *:8080"));
 
@@ -242,7 +241,7 @@ io.sockets.on("connection", (socket: SocketIO.Socket) => {
       return;
     }
 
-    if (params.to) {
+    if (params.to.filter(x => x).length > 0) {
       let toUsers = room.users.map(user =>
         params.to.some(toUser => toUser === user.name) ? user : undefined
       );

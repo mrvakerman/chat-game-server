@@ -6,7 +6,7 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "outDir": "./",
+    "outDir": "./build",
     "rootDir": "./",
     "jsx": "react"
   },
