@@ -8,10 +8,7 @@ import Chat from "./Chat";
 import { Help } from "@material-ui/icons";
 import HelpDlg from "./dialogs/Help";
 
-const socket =
-  process.env.NODE_ENV === "production"
-    ? socketIOClient()
-    : socketIOClient("localhost:8080");
+const socket = socketIOClient();
 
 export default function App() {
   const [room, setRoom] = useState<Room>();

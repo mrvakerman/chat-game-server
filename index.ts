@@ -55,12 +55,12 @@ function checkLastSymbol(prevWord: string, newWord: string): boolean {
 }
 
 // TODO fix this code
-app.use(express.static("client/build"));
+app.use(express.static("public"));
 app.get("/", (req: any, res: any) => {
-  res.sendFile(`${__dirname}/client/build/index.html`);
+  res.sendFile(`${__dirname}/public/index.html`);
 });
 
-server.listen(8080, () => console.log("Server started on *:8080"));
+server.listen(80, () => console.log("Server started on *:80"));
 
 io.sockets.on("connection", (socket: SocketIO.Socket) => {
   send(socket, "connected");
