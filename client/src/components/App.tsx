@@ -8,7 +8,11 @@ import Chat from "./Chat";
 import { Help } from "@material-ui/icons";
 import HelpDlg from "./dialogs/Help";
 
-const socket = socketIOClient("localhost:8080");
+const socket = socketIOClient(
+  process.env.NODE_ENV === "production"
+    ? "https://chat-words-server.now.sh/"
+    : "localhost:8080"
+);
 
 export default function App() {
   const [room, setRoom] = useState<Room>();
@@ -28,9 +32,7 @@ export default function App() {
           />
         </div>
         <Typography variant="h6" color="inherit">
-          {room &&
-            user &&
-            `Комната :: ${room.name} - Никнейм :: ${user.name}`}
+          {room && user && `Комната :: ${room.name} - Никнейм :: ${user.name}`}
         </Typography>
       </div>
       <div className="flex row grow">
