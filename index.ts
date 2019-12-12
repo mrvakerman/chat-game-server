@@ -182,6 +182,7 @@ io.sockets.on("connection", (socket: SocketIO.Socket) => {
   });
 
   socket.on("send-word", (params: WordParam) => {
+    console.log(words);
     if (!words.some(word => word === params.word)) {
       sendWordError(
         socket,
