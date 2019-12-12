@@ -182,7 +182,7 @@ io.sockets.on("connection", (socket: SocketIO.Socket) => {
   });
 
   socket.on("send-word", (params: WordParam) => {
-    if (!words.includes(params.word)) {
+    if (!words.some(word => word === params.word)) {
       sendWordError(
         socket,
         `Слово '${params.word}' не доступно! Попробуйте другое слово`
